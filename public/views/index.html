@@ -1,0 +1,158 @@
+<html>
+
+<head>
+    <title>Play Pokemon</title>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.css">
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
+    <link rel="stylesheet" type="text/css" href="../css/dashboard.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-header">
+            <p class="navbar-brand">Play Pokemon</p>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <ul class="nav nav-sidebar">
+                    <li class="active"><a data-toggle="collapse" href="#collapse1">Movement 1</a></li>
+                    <div id="collapse1" class="panel-collapse collapse">
+                        <br>
+                        <input type="text" class="form-control" id="m1Name" placeholder="Movement 1" onblur="changeName('m1Name')">
+                        <input type="number" class="form-control" placeholder="Cost">
+                    </div>
+                    <li><a data-toggle="collapse" href="#collapse2">Movement 2</a></li>
+                    <div id="collapse2" class="panel-collapse collapse">
+                        <br>
+                        <input type="text" class="form-control" id="m2Name" placeholder="Movement 2" onblur="changeName('m2Name')">
+                        <input type="number" class="form-control" placeholder="Cost">
+                    </div>
+                    <li><a data-toggle="collapse" href="#collapse3">Movement 3</a></li>
+                    <div id="collapse3" class="panel-collapse collapse">
+                        <br>
+                        <input type="text" class="form-control" id="m3Name" placeholder="Movement 3" onblur="changeName('m3Name')">
+                        <input type="number" class="form-control" placeholder="Cost">
+                    </div>
+                    <li><a data-toggle="collapse" href="#collapse4">Movement 4</a></li>
+                    <div id="collapse4" class="panel-collapse collapse">
+                        <br>
+                        <input type="text" class="form-control" id="m4Name" placeholder="Movement 4" onblur="changeName('m4Name')">
+                        <input type="number" class="form-control" placeholder="Cost">
+                    </div>
+                </ul>
+            </div>
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <div class="jumbotron">
+                    <div class="row movement">
+                        <div class="col-md-6">
+                            <button class="btn btn-lg btn-default" id="m1" type="button">{{m1Name}}</button>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-lg btn-default" id="m2" type="button">{{m2Name}}</button>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row movement">
+                        <div class="col-md-6">
+                            <button class="btn btn-lg btn-default" id="m3" type="button">{{m3Name}}</button>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-lg btn-default" id="m4" type="button">{{m4Name}}</button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row options">
+                        <div class="col-md-4">
+                            <button class="btn btn-lg btn-success" type="button" onclick="save()">Save</button>
+                        </div>
+                        <div class="col-md-4">
+                            <a class="btn btn-lg btn-primary" role="button" href="/connect">Launch</a>
+                        </div>
+                        <div class="col-md-4">
+                            <a class="btn btn-lg btn-info" role="button" onclick="countdown();activate();">Activate</a>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="control" checked onclick="automatiControl()"/> Automatic control
+                        </label>
+                    </div>
+                    <br>
+                    <div class="progress">
+                        <div id="countdown" class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script>
+        function changeName(id) {
+            switch (id) {
+                case "m1Name":
+                    $("#m1").text($("#" + id).val());
+                    break;
+                case "m2Name":
+                    $("#m2").text($("#" + id).val());
+                    break;
+                case "m3Name":
+                    $("#m3").text($("#" + id).val());
+                    break;
+                case "m4Name":
+                    $("#m4").text($("#" + id).val());
+                    break;
+            }
+        }
+        function automatiControl() {
+            $.get("/automaticControl", function (data) {
+
+            });
+        }
+        function save() {
+            $.post("/save",
+                {
+                    buttons: [{
+                        m1Name: $("#m1").text(),
+                        cost: 2
+                    }, {
+                        m2Name: $("#m2").text(),
+                        cost: 2
+                    }, {
+                        m3Name: $("#m3").text(),
+                        cost: 2
+                    }, {
+                        m4Name: $("#m4").text(),
+                        cost: 2
+                    }]
+                },
+                function (data, status) {
+                });
+        }
+        function activate() {
+            $.ajax('/activate');
+        }
+        function countdown() {
+            var timeleft = 10;
+            var downloadTimer = setInterval(function () {
+                console.log(timeleft);
+                $("#countdown").css("width", timeleft-- * 10 + "%");
+                if (timeleft < -1) {
+                    clearInterval(downloadTimer);
+                    $.ajax('/getMostVoted').done(function (msg) {
+                        $('.alert').remove();
+                        $('.jumbotron').append('<div class="alert alert-success" role="alert"><strong>'+msg+'</strong></div>');
+                    });
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+
+</html>
