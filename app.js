@@ -89,6 +89,8 @@ var m4 = 0;
 //------------------
 var automaticControl = true;
 //--------
+var started = false;
+//--------
 var configuration = {};
 //-------
 //Load Configuration
@@ -219,6 +221,7 @@ server.get('/authorized', function (req, res) {
       disableButtons();
       // Controls don't appear unless we tell Interactive that we are ready!
       client.ready(true);
+      started = true;
     });
   });
 });
@@ -249,8 +252,10 @@ server.post('/save', function (req, res) {
   configuration.buttons = req.body.buttons;
   fs.writeFileSync('./config', JSON.stringify(configuration), 'utf-8');
   loadConfiguration();
-  client.ready(false);
-  updateButtonOnMixer();
+  if(started){
+    client.ready(false);
+    updateButtonOnMixer();
+  }
 });
 
 server.get('/getMostVoted', function (req, res) {

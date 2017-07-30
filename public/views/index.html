@@ -22,25 +22,25 @@
                     <div id="collapse1" class="panel-collapse collapse">
                         <br>
                         <input type="text" class="form-control" id="m1Name" placeholder="Movement 1" onblur="changeName('m1Name')">
-                        <input type="number" class="form-control" placeholder="Cost">
+                        <input type="number" class="form-control" id="m1Cost" placeholder="Cost" onblur="changeCost('m1Cost')">
                     </div>
                     <li><a data-toggle="collapse" href="#collapse2">Movement 2</a></li>
                     <div id="collapse2" class="panel-collapse collapse">
                         <br>
                         <input type="text" class="form-control" id="m2Name" placeholder="Movement 2" onblur="changeName('m2Name')">
-                        <input type="number" class="form-control" placeholder="Cost">
+                        <input type="number" class="form-control" id="m2Cost" placeholder="Cost" onblur="changeCost('m2Cost')">
                     </div>
                     <li><a data-toggle="collapse" href="#collapse3">Movement 3</a></li>
                     <div id="collapse3" class="panel-collapse collapse">
                         <br>
                         <input type="text" class="form-control" id="m3Name" placeholder="Movement 3" onblur="changeName('m3Name')">
-                        <input type="number" class="form-control" placeholder="Cost">
+                        <input type="number" class="form-control" id="m3Cost" placeholder="Cost" onblur="changeCost('m3Cost')">
                     </div>
                     <li><a data-toggle="collapse" href="#collapse4">Movement 4</a></li>
                     <div id="collapse4" class="panel-collapse collapse">
                         <br>
                         <input type="text" class="form-control" id="m4Name" placeholder="Movement 4" onblur="changeName('m4Name')">
-                        <input type="number" class="form-control" placeholder="Cost">
+                        <input type="number" class="form-control" id="m4Cost" placeholder="Cost" onblur="changeCost('m4Cost')">
                     </div>
                 </ul>
             </div>
@@ -48,19 +48,23 @@
                 <div class="jumbotron">
                     <div class="row movement">
                         <div class="col-md-6">
-                            <button class="btn btn-lg btn-default" id="m1" type="button">{{m1Name}}</button>
+                            <h4><span class="label label-default" id="m1CostSpan">{{m1Cost}}</span></h4>
+                            <button class="btnMovement btn btn-lg btn-default" id="m1" type="button">{{m1Name}}</button>
                         </div>
                         <div class="col-md-6">
-                            <button class="btn btn-lg btn-default" id="m2" type="button">{{m2Name}}</button>
+                            <h4><span class="label label-default" id="m2CostSpan">{{m2Cost}}</span></h4>
+                            <button class="btnMovement btn btn-lg btn-default" id="m2" type="button">{{m2Name}}</button>
                         </div>
                     </div>
                     <br>
                     <div class="row movement">
                         <div class="col-md-6">
-                            <button class="btn btn-lg btn-default" id="m3" type="button">{{m3Name}}</button>
+                            <h4><span class="label label-default" id="m3CostSpan">{{m3Cost}}</span></h4>
+                            <button class="btnMovement btn btn-lg btn-default" id="m3" type="button">{{m3Name}}</button>
                         </div>
                         <div class="col-md-6">
-                            <button class="btn btn-lg btn-default" id="m4" type="button">{{m4Name}}</button>
+                            <h4><span class="label label-default" id="m4CostSpan">{{m4Cost}}</span></h4>
+                            <button class="btnMovement btn btn-lg btn-default" id="m4" type="button">{{m4Name}}</button>
                         </div>
                     </div>
                     <br>
@@ -110,6 +114,22 @@
                     break;
             }
         }
+        function changeCost(id) {
+            switch (id) {
+                case "m1Cost":
+                    $("#m1CostSpan").text($("#" + id).val());
+                    break;
+                case "m2Cost":
+                    $("#m2CostSpan").text($("#" + id).val());
+                    break;
+                case "m3Cost":
+                    $("#m3CostSpan").text($("#" + id).val());
+                    break;
+                case "m4Cost":
+                    $("#m4CostSpan").text($("#" + id).val());
+                    break;
+            }
+        }
         function automatiControl() {
             $.get("/automaticControl", function (data) {
 
@@ -120,16 +140,16 @@
                 {
                     buttons: [{
                         m1Name: $("#m1").text(),
-                        cost: 2
+                        m1Cost: $("#m1CostSpan").text()
                     }, {
                         m2Name: $("#m2").text(),
-                        cost: 2
+                        m2Cost: $("#m2CostSpan").text()
                     }, {
                         m3Name: $("#m3").text(),
-                        cost: 2
+                        m3Cost: $("#m3CostSpan").text()
                     }, {
                         m4Name: $("#m4").text(),
-                        cost: 2
+                        m4Cost: $("#m4CostSpan").text()
                     }]
                 },
                 function (data, status) {
@@ -147,7 +167,7 @@
                     clearInterval(downloadTimer);
                     $.ajax('/getMostVoted').done(function (msg) {
                         $('.alert').remove();
-                        $('.jumbotron').append('<div class="alert alert-success" role="alert"><strong>'+msg+'</strong></div>');
+                        $('.jumbotron').append('<div class="alert alert-success" role="alert"><strong>' + msg + '</strong></div>');
                     });
                 }
             }, 1000);

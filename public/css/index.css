@@ -7,3 +7,12 @@
 .panel-collapse{
     padding-left: 20px;
 }
+.label{
+    position: absolute;
+    top:2px;
+    left: 70px;
+    width: 85px;
+}
+.btnMovement{
+    width: 135px;
+}
