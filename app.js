@@ -88,6 +88,7 @@ var m3 = 0;
 var m4 = 0;
 //------------------
 var automaticControl = true;
+var needReset = false;
 //--------
 var started = false;
 //--------
@@ -234,6 +235,10 @@ server.get('/activate', function (req, res) {
   timer.onDone(function () {
     disableButtons();
     if (automaticControl) {
+      if(needReset){
+        selectInput("reset");
+        sleep(400);
+      }
       selectInput(getMax());
     }
   });
@@ -308,32 +313,45 @@ function input(direction) {
 function selectInput(button) {
   switch (button) {
     case "m1":
-      input("right");
-      sleep(500);
+      //input("right");
+      //sleep(500);
+      needReset = false;
       input("accept");
       break;
     case "m2":
-      input("right");
-      sleep(500);
+      /*input("right");
+      sleep(500);*/
+      needReset = true;
       input("right");
       sleep(500);
       input("accept");
       break;
     case "m3":
+      /*input("right");
+      sleep(500);*/
+      needReset = true;
+      input("down");
+      sleep(500);
+      input("accept");
+      break;
+    case "m4":
+      /*input("right");
+      sleep(500);*/
+      needReset = true;
       input("right");
       sleep(500);
       input("down");
       sleep(500);
       input("accept");
       break;
-    case "m4":
-      input("right");
-      sleep(500);
-      input("right");
-      sleep(500);
-      input("down");
-      sleep(500);
-      input("accept");
+    case "reset":
+      input("left");
+      sleep(100);
+      input("left");
+      sleep(100);
+      input("up");
+      sleep(100);
+      input("up");
       break;
   }
 }
@@ -384,10 +402,6 @@ function movementReset() {
   m2 = 0;
   m3 = 0;
   m4 = 0;
-}
-
-function resetPosition() {
-
 }
 
 function disableButtons() {
