@@ -95,39 +95,43 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script>
         function changeName(id) {
             switch (id) {
                 case "m1Name":
-                    $("#m1").text($("#" + id).val());
+                    change($("#" + id).val(),"#m1");
                     break;
                 case "m2Name":
-                    $("#m2").text($("#" + id).val());
+                    change($("#" + id).val(),"#m2");
                     break;
                 case "m3Name":
-                    $("#m3").text($("#" + id).val());
+                    change($("#" + id).val(),"#m3");
                     break;
                 case "m4Name":
-                    $("#m4").text($("#" + id).val());
+                    change($("#" + id).val(),"#m4");
                     break;
             }
         }
         function changeCost(id) {
             switch (id) {
                 case "m1Cost":
-                    $("#m1CostSpan").text($("#" + id).val());
+                    change($("#" + id).val(),"#m1CostSpan");
                     break;
                 case "m2Cost":
-                    $("#m2CostSpan").text($("#" + id).val());
+                    change($("#" + id).val(),"#m2CostSpan");
                     break;
                 case "m3Cost":
-                    $("#m3CostSpan").text($("#" + id).val());
+                    change($("#" + id).val(),"#m3CostSpan");
                     break;
                 case "m4Cost":
-                    $("#m4CostSpan").text($("#" + id).val());
+                    change($("#" + id).val(),"#m4CostSpan");
                     break;
+            }
+        }
+        function change(text,destination){
+            if(text.length>0){
+                $("#destination").text(text);
             }
         }
         function automatiControl() {
