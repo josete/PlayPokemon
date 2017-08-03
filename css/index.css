@@ -149,3 +149,12 @@ h3{
     float:left;
     margin-right: 5px;
 }
+
+.half{
+    max-width: 30%;
+    max-height: 30%;
+}
+
+.space{
+    margin-top: 5px;
+}
