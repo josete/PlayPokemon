@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway");
 @import url("https://fonts.googleapis.com/css?family=Oswald");
+@import url("https://fonts.googleapis.com/css?family=Bree+Serif");
 
 html,body{
     margin: 0;
@@ -53,12 +54,23 @@ html,body{
     color: white;
     border:solid white 3px;
 }
-p{
+/*p{
     font-size: 160%;
     line-height: 210%;
     text-align: justify;
     margin: 3%;
     font-family: sans-serif;
+}*/
+
+p{
+    font-size: 110%;
+    line-height: 210%;
+    color: white;
+    font-family: "Bree Serif",sans-serif;
+}
+
+h3{
+    font-family: "Raleway",sans-serif;
 }
 
 .step{
@@ -68,43 +80,6 @@ p{
     display: table;
     top:0;
     background-size: cover;
-}
-
-.sidebar{
-    overflow: hidden;
-    position: fixed;
-    top:35%;
-}
-
-.sidebar ul {
-    margin:auto;
-    list-style-type: none;
-    width: 200px;
-} 
-
-.sidebar li a {
-    margin-top: 15px;
-    margin-bottom: 15px; 
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    border: solid #f9f3f4 3px;
-    display: block;
-    text-decoration: none;
-    color: #f9f3f4;
-} 
-
-.sidebar li a:hover{
-    background-color: #f9f3f4;
-} 
-.sidebar li a:hover p{
-   display: block;
-} 
-
-.sidebar p{
-    margin-top: -17px;
-    margin-left: 26px;
-    display: none;
 }
 
 #step1{
@@ -118,4 +93,54 @@ p{
 }
 #step4{
     background-color: #04395e; 
+}
+
+/* Style the links inside the sidenav */
+.sidenav a {
+    overflow: hidden;
+    position: fixed; /* Position them relative to the browser window */
+    left: -80px; /* Position them outside of the screen */
+    transition: 0.3s; /* Add transition on hover */
+    padding: 15px;
+    width: 120px;
+    text-decoration: none;
+    font-size: 20px; 
+    color: transparent; 
+    border-radius: 0 5px 5px 0; 
+    font-family: sans-serif;
+}
+
+.sidenav a:hover {
+    left: 0; /* On mouse-over, make the elements appear as they should */
+    color: #f9f3f4;
+}
+
+/* The about link: 20px from the top with a green background */
+#installation {
+    top: 20px;
+     background-color: #3883D1;
+}
+
+#configuration {
+    top: 80px;
+     background-color: #26589A;
+}
+
+#howto {
+    top: 140px;
+     background-color: #163C6A;
+}
+
+#notes {
+    top: 200px;
+     background-color: #04336E;
+}
+.sectionContent{
+    margin-left: 150px;
+}
+.sectionTitle{
+    font-family: "Raleway",sans-serif;
+    color: #f9f3f4;
+    text-shadow: 0px 0px 300px #000;
+    text-transform: uppercase;
 }

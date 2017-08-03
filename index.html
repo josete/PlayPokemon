@@ -1,33 +1,55 @@
 <!DOCTYPE html>
-    <head>
-        <link rel="stylesheet" href="./css/index.css">
-        <title>Play Pokemon</title>
-    </head>
-    <body>
-        <div class="sidebar">
-            <ul>
-                <li><a href="#step1"><p>Installation</p></a></li>
-                <li><a href="#step2"><p>Hola</p></a></li>
-                <li><a href="#step3"><p>Hola</p></a></li>
-                <li><a href="#step4"><p>Hola</p></a></li>
-            </ul>
+
+<head>
+    <link rel="stylesheet" href="./css/index.css">
+    <title>Play Pokemon</title>
+</head>
+
+<body>
+    <div class="sidenav">
+        <a href="#step1" id="installation">Installation</a>
+        <a href="#step2" id="configuration">Configuration</a>
+        <a href="#step3" id="howto">How to use</a>
+        <a href="#step4" id="notes">Notes</a>
+    </div>
+    <section class="intro">
+        <div class="inner">
+            <div class="content">
+                <h1>Play Pokemon</h1>
+                <a class="btn" href="#step1">Get Started</a>
+                <a class="btn" href="https://github.com/josete/PlayPokemon/releases/download/1.0/PlayPokemon.1.0.zip">Download</a>
+            </div>
         </div>
-       <section class="intro">
-           <div class="inner">
-               <div class="content">
-                   <h1>Play Pokemon</h1>
-                   <a class="btn" href="#step1">Get Started</a>
-                   <a class="btn" href="https://github.com/josete/PlayPokemon/releases/download/1.0/PlayPokemon.1.0.zip">Download</a>
-               </div>
-           </div>
-       </section>
-        <section class="step" id="step1">    
-        </section>
-        <section class="step" id="step2">    
-        </section>
-        <section class="step" id="step3">    
-        </section>
-        <section class="step" id="step4">    
-        </section>
-    </body>
+    </section>
+    <section class="step" id="step1">
+        <div class="sectionContent">
+            <h1 class="sectionTitle">Installation</h1>
+            <h3>Requirements</h3>
+            <p>
+                Node js (v. 6.7+) download Node js from <a href="https://nodejs.org/es/">here</a>.<br>
+                Java (v. 1.8.0+) download java from <a href="https://www.java.com/es/download/">here</a>.
+            </p>
+            <h3>First step</h3>
+            <p>
+            Download PlayPokemon from the link above or <a href="https://github.com/josete/PlayPokemon/releases/download/1.0/PlayPokemon.1.0.zip">here</a>.<br>
+            Uncompress the zip file, go to the destination folder and open a command line and write "npm install",
+            this will install all the packets required for the aplication to work.
+            </p>
+            <h3>Running the aplication</h3>
+            <p>
+            In order to run the aplication open a command line and write "node app.js", this will open the configuration page in your default browser.
+            </p>
+        </div>
+    </section>
+    <section class="step" id="step2">
+        <div class="sectionContent">
+            <h1 class="sectionTitle">Configuration</h1>
+            <h3>Log in Mixer</h3>
+        </div>
+    </section>
+    <section class="step" id="step3">
+    </section>
+    <section class="step" id="step4">
+    </section>
+</body>
 </html>
