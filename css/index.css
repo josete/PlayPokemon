@@ -71,6 +71,8 @@ p{
 
 h3{
     font-family: "Raleway",sans-serif;
+    text-decoration: underline;
+    color:white;
 }
 
 .step{
@@ -143,6 +145,7 @@ h3{
     color: #f9f3f4;
     text-shadow: 0px 0px 300px #000;
     text-transform: uppercase;
+    text-decoration: underline;
 }
 
 .left{
